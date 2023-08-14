@@ -21,6 +21,7 @@ public class Pedido {
 
     private boolean entrega;
 
+    @Enumerated(value = EnumType.STRING)
     private Situacao situacao;
 
     private boolean pagamento;
@@ -28,17 +29,17 @@ public class Pedido {
     private double valor;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_cliente")
     @JsonManagedReference
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_endereco")
     @JsonManagedReference
     private Endereco endereco;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_funcionario")
     @JsonManagedReference
     private Funcionario funcionario;
 

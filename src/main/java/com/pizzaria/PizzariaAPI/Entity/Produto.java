@@ -17,6 +17,7 @@ public class Produto {
 
     private String nome;
 
+    @Enumerated(value = EnumType.STRING)
     private Tamanho tamanho;
 
     private double valor;
