@@ -22,6 +22,7 @@ public class Sabor {
     private String observacao;
 
     private double valor;
+
     @ManyToMany
     @JoinColumn(name = "id_produto")
     @JsonIgnore
