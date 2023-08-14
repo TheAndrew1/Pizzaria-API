@@ -23,7 +23,8 @@ public class ClienteDTO {
 
     public ClienteDTO(){}
 
-    public ClienteDTO(String nome, int idade, String email, String senha){
+    public ClienteDTO(Long id, String nome, int idade, String email, String senha){
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.email = email;

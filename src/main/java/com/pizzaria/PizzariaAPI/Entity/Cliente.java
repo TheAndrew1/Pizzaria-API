@@ -34,7 +34,8 @@ public class Cliente {
 
     public Cliente(){}
 
-    public Cliente(String nome, int idade, String email, String senha){
+    public Cliente(Long id, String nome, int idade, String email, String senha){
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.email = email;
