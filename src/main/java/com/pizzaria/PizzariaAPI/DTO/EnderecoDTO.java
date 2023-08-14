@@ -21,7 +21,8 @@ public class EnderecoDTO {
 
     public EnderecoDTO(){}
 
-    public EnderecoDTO(String bairro, String rua, int numero){
+    public EnderecoDTO(Long id, String bairro, String rua, int numero){
+        this.id = id;
         this.bairro = bairro;
         this.rua = rua;
         this.numero = numero;
