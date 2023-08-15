@@ -21,17 +21,27 @@ public class PedidoDTO {
 
     private double valor;
 
-    private Cliente cliente;
+    private ClienteDTO cliente;
 
-    private Endereco endereco;
+    private EnderecoDTO endereco;
 
-    private Funcionario funcionario;
+    private FuncionarioDTO funcionario;
 
     private List<ProdutoDTO> produtos;
 
     public PedidoDTO(){}
 
-    public PedidoDTO(Date data, boolean entrega, Situacao situacao, boolean pagamento, double valor, Cliente cliente, Endereco endereco, Funcionario funcionario){
+    public PedidoDTO(Long id, Date data, boolean entrega, Situacao situacao, boolean pagamento, double valor){
+        this.id = id;
+        this.data = data;
+        this.entrega = entrega;
+        this.situacao = situacao;
+        this.pagamento = pagamento;
+        this.valor = valor;
+    }
+
+    public PedidoDTO(Long id, Date data, boolean entrega, Situacao situacao, boolean pagamento, double valor, ClienteDTO cliente, EnderecoDTO endereco, FuncionarioDTO funcionario){
+        this.id = id;
         this.data = data;
         this.entrega = entrega;
         this.situacao = situacao;

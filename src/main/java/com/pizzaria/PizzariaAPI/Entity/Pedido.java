@@ -49,7 +49,17 @@ public class Pedido {
 
     public Pedido(){}
 
-    public Pedido(Date data, boolean entrega, Situacao situacao, boolean pagamento, double valor, Cliente cliente, Endereco endereco, Funcionario funcionario){
+    public Pedido(Long id, Date data, boolean entrega, Situacao situacao, boolean pagamento, double valor){
+        this.id = id;
+        this.data = data;
+        this.entrega = entrega;
+        this.situacao = situacao;
+        this.pagamento = pagamento;
+        this.valor = valor;
+    }
+
+    public Pedido(Long id, Date data, boolean entrega, Situacao situacao, boolean pagamento, double valor, Cliente cliente, Endereco endereco, Funcionario funcionario){
+        this.id = id;
         this.data = data;
         this.entrega = entrega;
         this.situacao = situacao;
