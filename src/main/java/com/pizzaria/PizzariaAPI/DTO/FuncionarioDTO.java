@@ -20,7 +20,8 @@ public class FuncionarioDTO {
 
     public FuncionarioDTO(){}
 
-    public FuncionarioDTO(String nome, String login, String senha){
+    public FuncionarioDTO(Long id, String nome, String login, String senha){
+        this.id = id;
         this.nome = nome;
         this.login = login;
         this.senha = senha;

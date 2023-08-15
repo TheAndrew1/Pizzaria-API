@@ -23,7 +23,7 @@ public class Endereco {
     private int numero;
 
     @OneToMany
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_pedido")
     @JsonBackReference
     private List<Pedido> pedidos;
 

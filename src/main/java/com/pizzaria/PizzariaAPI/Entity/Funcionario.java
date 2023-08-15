@@ -30,7 +30,8 @@ public class Funcionario {
 
     public Funcionario(){}
 
-    public Funcionario(String nome, String login, String senha){
+    public Funcionario(Long id, String nome, String login, String senha){
+        this.id = id;
         this.nome = nome;
         this.login = login;
         this.senha = senha;
