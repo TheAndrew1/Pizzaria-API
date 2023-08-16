@@ -43,9 +43,9 @@ public class FuncionarioService {
 
     @Transactional(rollbackFor = Exception.class)
     public void update(Long id, FuncionarioDTO funcionarioDTO) {
-        FuncionarioDTO funcionarioNoBanco = findById(id);
-        Assert.notNull(funcionarioNoBanco, "Funcionário não encontrado!");
-        Assert.isTrue(funcionarioNoBanco.getId().equals(funcionarioDTO.getId()), "Funcionários não conferem!");
+        FuncionarioDTO funcionarioDatabaase = findById(id);
+        Assert.notNull(funcionarioDatabaase, "Funcionário não encontrado!");
+        Assert.isTrue(funcionarioDatabaase.getId().equals(funcionarioDTO.getId()), "Funcionários não conferem!");
 
         Assert.isTrue(!funcionarioDTO.getNome().isBlank(), "Nome inválido!");
         Assert.isTrue(!funcionarioDTO.getLogin().isBlank(), "Login inválido!");

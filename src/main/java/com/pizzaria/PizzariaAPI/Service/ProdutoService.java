@@ -42,9 +42,9 @@ public class ProdutoService {
 
     @Transactional(rollbackFor = Exception.class)
     public void update(Long id, ProdutoDTO produtoDTO) {
-        ProdutoDTO produtoNoBanco = findById(id);
-        Assert.notNull(produtoNoBanco, "Produto não encontrado!");
-        Assert.isTrue(produtoNoBanco.getId().equals(produtoDTO.getId()), "Produtos não conferem!");
+        ProdutoDTO produtoDatabase = findById(id);
+        Assert.notNull(produtoDatabase, "Produto não encontrado!");
+        Assert.isTrue(produtoDatabase.getId().equals(produtoDTO.getId()), "Produtos não conferem!");
 
         Assert.isTrue(!produtoDTO.getNome().isBlank(), "Deve conter nome do produto!");
         Assert.notNull(produtoDTO.getValor(), "Deve conter valor do produto!");

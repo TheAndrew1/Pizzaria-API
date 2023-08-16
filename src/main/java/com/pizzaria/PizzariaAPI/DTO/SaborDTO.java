@@ -22,7 +22,8 @@ public class SaborDTO {
     public SaborDTO() {
     }
 
-    public SaborDTO(String nome, String descricao, String observacao, double valor) {
+    public SaborDTO(Long id, String nome, String descricao, String observacao, double valor) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.observacao = observacao;

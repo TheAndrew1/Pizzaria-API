@@ -31,7 +31,8 @@ public class Sabor {
     public Sabor() {
     }
 
-    public Sabor(String nome, String descricao, String observacao, double valor) {
+    public Sabor(Long id, String nome, String descricao, String observacao, double valor) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.observacao = observacao;

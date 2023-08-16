@@ -43,9 +43,9 @@ public class PedidoService {
 
     @Transactional(rollbackFor = Exception.class)
     public void update(Long id, PedidoDTO pedidoDTO) {
-        PedidoDTO pedidoNoBanco = findById(id);
-        Assert.notNull(pedidoNoBanco, "Pedido não encontrado!");
-        Assert.isTrue(pedidoNoBanco.getId().equals(pedidoDTO.getId()), "Pedidos não conferem!");
+        PedidoDTO pedidoDatabase = findById(id);
+        Assert.notNull(pedidoDatabase, "Pedido não encontrado!");
+        Assert.isTrue(pedidoDatabase.getId().equals(pedidoDTO.getId()), "Pedidos não conferem!");
 
         Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
