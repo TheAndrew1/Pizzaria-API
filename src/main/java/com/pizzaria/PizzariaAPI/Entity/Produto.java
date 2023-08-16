@@ -33,7 +33,8 @@ public class Produto {
 
     public Produto(){}
 
-    public Produto(String nome, Tamanho tamanho, double valor){
+    public Produto(Long id, String nome, Tamanho tamanho, double valor){
+        this.id = id;
         this.nome = nome;
         this.tamanho = tamanho;
         this.valor = valor;

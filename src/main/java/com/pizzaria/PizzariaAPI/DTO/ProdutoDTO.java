@@ -22,7 +22,8 @@ public class ProdutoDTO {
 
     public ProdutoDTO(){}
 
-    public ProdutoDTO(String nome, Tamanho tamanho, double valor){
+    public ProdutoDTO(Long id, String nome, Tamanho tamanho, double valor){
+        this.id = id;
         this.nome = nome;
         this.tamanho = tamanho;
         this.valor = valor;
