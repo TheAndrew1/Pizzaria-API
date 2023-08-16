@@ -2,19 +2,15 @@ package com.pizzaria.PizzariaAPI.Controller;
 
 import com.pizzaria.PizzariaAPI.DTO.ClienteDTO;
 import com.pizzaria.PizzariaAPI.Service.ClienteService;
-import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cliente")
+@RequestMapping("/cliente")
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
@@ -37,6 +33,39 @@ public class ClienteController {
             return ResponseEntity.ok(clientesDTO);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(new ArrayList<ClienteDTO>());
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<String> create(@RequestBody final ClienteDTO clienteDTO){
+        try {
+            this.clienteService.create(clienteDTO);
+
+            return ResponseEntity.ok("Cadastrado com sucesso!");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping
+    public ResponseEntity<String> update(@RequestParam("id") final Long id, @RequestBody final ClienteDTO clienteDTO){
+        try {
+            this.clienteService.update(id, clienteDTO);
+
+            return ResponseEntity.ok("Editado com sucesso!");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> delete(@RequestParam("id") final Long id){
+        try {
+            this.clienteService.delete(id);
+
+            return ResponseEntity.ok("Exlcuido com sucesso!");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

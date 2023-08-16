@@ -22,15 +22,14 @@ public class Endereco {
 
     private int numero;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
+
     @OneToMany
     @JoinColumn(name = "id_pedido")
     @JsonBackReference
     private List<Pedido> pedidos;
-
-    @ManyToMany
-    @JoinColumn(name = "id_cliente")
-    @JsonIgnore
-    private List<Cliente> clientes;
 
     public Endereco(){}
 

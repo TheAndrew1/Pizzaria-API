@@ -24,7 +24,7 @@ public class Funcionario {
     private String senha;
 
     @OneToMany
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_pedido")
     @JsonBackReference
     private List<Pedido> pedidos;
 

@@ -24,11 +24,11 @@ public class Cliente {
     private String senha;
 
     @OneToMany
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_pedido")
     @JsonBackReference
     private List<Pedido> pedidos;
 
-    @ManyToMany
+    @OneToMany
     @JoinColumn(name = "id_endereco")
     private List<Endereco> enderecos;
 
