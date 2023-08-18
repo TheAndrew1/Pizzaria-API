@@ -1,5 +1,6 @@
 package com.pizzaria.PizzariaAPI.Service;
 
+import com.pizzaria.PizzariaAPI.Convert.FuncionarioConverter;
 import com.pizzaria.PizzariaAPI.DTO.FuncionarioDTO;
 import com.pizzaria.PizzariaAPI.Entity.Funcionario;
 import com.pizzaria.PizzariaAPI.Repository.FuncionarioRepository;
@@ -15,9 +16,11 @@ import java.util.List;
 public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+    @Autowired
+    private FuncionarioConverter funcionarioConverter;
 
     public FuncionarioDTO findById(final Long id) {
-        return toFuncionarioDTO(this.funcionarioRepository.findById(id).orElseThrow());
+        return funcionarioConverter.convertToFuncionarioDTO(this.funcionarioRepository.findById(id).orElseThrow());
     }
 
     public List<FuncionarioDTO> findAll() {
@@ -25,7 +28,7 @@ public class FuncionarioService {
         List<FuncionarioDTO> funcionariosDTO = new ArrayList<>();
 
         for (Funcionario funcionario : funcionarios) {
-            funcionariosDTO.add(toFuncionarioDTO(funcionario));
+            funcionariosDTO.add(funcionarioConverter.convertToFuncionarioDTO(funcionario));
         }
 
         return funcionariosDTO;
@@ -37,7 +40,7 @@ public class FuncionarioService {
         Assert.isTrue(!funcionarioDTO.getLogin().isBlank(), "Login inválido!");
         Assert.isTrue(!funcionarioDTO.getSenha().isBlank(), "Senha inválido!");
 
-        Funcionario funcionario = toFuncionario(funcionarioDTO);
+        Funcionario funcionario = funcionarioConverter.convertToFuncionario(funcionarioDTO);
         this.funcionarioRepository.save(funcionario);
     }
 
@@ -51,23 +54,13 @@ public class FuncionarioService {
         Assert.isTrue(!funcionarioDTO.getLogin().isBlank(), "Login inválido!");
         Assert.isTrue(!funcionarioDTO.getSenha().isBlank(), "Senha inválido!");
 
-        Funcionario funcionario = toFuncionario(funcionarioDTO);
+        Funcionario funcionario = funcionarioConverter.convertToFuncionario(funcionarioDTO);
         this.funcionarioRepository.save(funcionario);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
-        Funcionario funcionario = toFuncionario(findById(id));
+        Funcionario funcionario = funcionarioConverter.convertToFuncionario(findById(id));
         this.funcionarioRepository.delete(funcionario);
-    }
-
-    public FuncionarioDTO toFuncionarioDTO(Funcionario funcionario) {
-        FuncionarioDTO funcionarioDTO = new FuncionarioDTO(funcionario.getId(), funcionario.getNome(), funcionario.getLogin(), funcionario.getSenha());
-        return funcionarioDTO;
-    }
-
-    public Funcionario toFuncionario(FuncionarioDTO funcionarioDTO) {
-        Funcionario funcionario = new Funcionario(funcionarioDTO.getId(), funcionarioDTO.getNome(), funcionarioDTO.getLogin(), funcionarioDTO.getSenha());
-        return funcionario;
     }
 }
