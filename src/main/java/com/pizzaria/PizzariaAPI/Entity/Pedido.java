@@ -1,10 +1,12 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -15,35 +17,32 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date data;
+    private LocalDate data;
 
     private boolean entrega;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(value = EnumType.ORDINAL)
     private Situacao situacao;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(value = EnumType.ORDINAL)
     private Pagamento pagamento;
 
     private double valor;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
-    @JsonManagedReference
     private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "id_endereco")
-    @JsonManagedReference
     private Endereco endereco;
 
     @ManyToOne
     @JoinColumn(name = "id_funcionario")
-    @JsonManagedReference
     private Funcionario funcionario;
 
-    @ManyToMany
-    @JoinColumn(name = "id_produto")
-    @JsonManagedReference
-    private List<Produto> produtos;
+//    @ManyToMany
+//    @JoinColumn(name = "id_produto")
+//    @JsonManagedReference
+//    private List<Produto> produtos;
 }

@@ -1,8 +1,9 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class EnderecoDTO {
@@ -14,7 +15,8 @@ public class EnderecoDTO {
 
     private int numero;
 
-    //private List<PedidoDTO> pedidos;
+    @JsonIgnore
+    private List<PedidoDTO> pedidos;
 
     @JsonBackReference
     @JsonAlias(value = "cliente")

@@ -1,18 +1,17 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import com.pizzaria.PizzariaAPI.Entity.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
 public class PedidoDTO {
     private Long id;
 
-    private Date data;
+    private LocalDate data;
 
     private boolean entrega;
 
@@ -22,15 +21,12 @@ public class PedidoDTO {
 
     private double valor;
 
-    @JsonManagedReference
     @JsonAlias(value = "cliente")
     private ClienteDTO clienteDTO;
 
-    @JsonManagedReference
     @JsonAlias(value = "endereco")
     private EnderecoDTO enderecoDTO;
 
-    @JsonManagedReference
     @JsonAlias(value = "funcionario")
     private FuncionarioDTO funcionarioDTO;
 

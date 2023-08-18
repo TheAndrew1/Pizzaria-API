@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,6 +39,8 @@ public class PedidoService {
 
     @Transactional(rollbackFor = Exception.class)
     public void create(PedidoDTO pedidoDTO) {
+        pedidoDTO.setData(LocalDate.now());
+
         Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
         Assert.isTrue(pedidoDTO.getValor() > 0, "Valor deve ser positivo!");
@@ -50,6 +55,7 @@ public class PedidoService {
         Assert.notNull(pedidoDatabase, "Pedido não encontrado!");
         Assert.isTrue(pedidoDatabase.getId().equals(pedidoDTO.getId()), "Pedidos não conferem!");
 
+        pedidoDTO.setData(pedidoDatabase.getData());
         Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
         Assert.isTrue(pedidoDTO.getValor() > 0, "Valor deve ser positivo!");

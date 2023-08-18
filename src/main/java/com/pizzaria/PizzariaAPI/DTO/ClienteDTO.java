@@ -1,5 +1,6 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import java.util.List;
@@ -16,7 +17,9 @@ public class ClienteDTO {
 
     private String senha;
 
-    //private List<PedidoDTO> pedidos;
-
+    @JsonManagedReference
     private List<EnderecoDTO> enderecos;
+
+    @JsonIgnore
+    private List<PedidoDTO> pedidos;
 }

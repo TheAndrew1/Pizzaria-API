@@ -1,6 +1,9 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +24,6 @@ public class Funcionario {
     private String senha;
 
     @OneToMany(mappedBy = "funcionario")
-    @JsonBackReference
+    @JsonIgnore
     private List<Pedido> pedidos;
 }

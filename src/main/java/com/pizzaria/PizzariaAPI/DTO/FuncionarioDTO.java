@@ -1,6 +1,8 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
-import com.pizzaria.PizzariaAPI.Entity.Pedido;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import java.util.List;
@@ -15,5 +17,6 @@ public class FuncionarioDTO {
 
     private String senha;
 
-    //private List<PedidoDTO> pedidos;
+    @JsonIgnore
+    private List<PedidoDTO> pedidos;
 }
