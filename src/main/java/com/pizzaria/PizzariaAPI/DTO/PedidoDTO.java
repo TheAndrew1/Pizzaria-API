@@ -1,13 +1,14 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pizzaria.PizzariaAPI.Entity.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
-@Getter @Setter
+@Data
 public class PedidoDTO {
     private Long id;
 
@@ -17,38 +18,21 @@ public class PedidoDTO {
 
     private Situacao situacao;
 
-    private boolean pagamento;
+    private Pagamento pagamento;
 
     private double valor;
 
-    private ClienteDTO cliente;
+    @JsonManagedReference
+    @JsonAlias(value = "cliente")
+    private ClienteDTO clienteDTO;
 
-    private EnderecoDTO endereco;
+    @JsonManagedReference
+    @JsonAlias(value = "endereco")
+    private EnderecoDTO enderecoDTO;
 
-    private FuncionarioDTO funcionario;
+    @JsonManagedReference
+    @JsonAlias(value = "funcionario")
+    private FuncionarioDTO funcionarioDTO;
 
-    private List<ProdutoDTO> produtos;
-
-    public PedidoDTO(){}
-
-    public PedidoDTO(Long id, Date data, boolean entrega, Situacao situacao, boolean pagamento, double valor){
-        this.id = id;
-        this.data = data;
-        this.entrega = entrega;
-        this.situacao = situacao;
-        this.pagamento = pagamento;
-        this.valor = valor;
-    }
-
-    public PedidoDTO(Long id, Date data, boolean entrega, Situacao situacao, boolean pagamento, double valor, ClienteDTO cliente, EnderecoDTO endereco, FuncionarioDTO funcionario){
-        this.id = id;
-        this.data = data;
-        this.entrega = entrega;
-        this.situacao = situacao;
-        this.pagamento = pagamento;
-        this.valor = valor;
-        this.cliente = cliente;
-        this.endereco = endereco;
-        this.funcionario = funcionario;
-    }
+    //private List<ProdutoDTO> produtos;
 }

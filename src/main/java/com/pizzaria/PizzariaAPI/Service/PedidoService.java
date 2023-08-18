@@ -1,5 +1,6 @@
 package com.pizzaria.PizzariaAPI.Service;
 
+import com.pizzaria.PizzariaAPI.Convert.PedidoConverter;
 import com.pizzaria.PizzariaAPI.DTO.PedidoDTO;
 import com.pizzaria.PizzariaAPI.Entity.Pedido;
 import com.pizzaria.PizzariaAPI.Repository.PedidoRepository;
@@ -15,9 +16,11 @@ import java.util.List;
 public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
+    @Autowired
+    private PedidoConverter pedidoConverter;
 
     public PedidoDTO findById(Long id) {
-        return toPedidoDTO(this.pedidoRepository.findById(id).orElseThrow());
+        return pedidoConverter.convertToPedidoDTO(this.pedidoRepository.findById(id).orElseThrow());
     }
 
     public List<PedidoDTO> findAll() {
@@ -25,7 +28,7 @@ public class PedidoService {
         List<PedidoDTO> pedidosDTO = new ArrayList<>();
 
         for (Pedido pedido : pedidos) {
-            pedidosDTO.add(toPedidoDTO(pedido));
+            pedidosDTO.add(pedidoConverter.convertToPedidoDTO(pedido));
         }
 
         return pedidosDTO;
@@ -35,9 +38,9 @@ public class PedidoService {
     public void create(PedidoDTO pedidoDTO) {
         Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
-        Assert.notNull(pedidoDTO.getValor(), "Valor não pode ser nulo!");
+        Assert.isTrue(pedidoDTO.getValor() > 0, "Valor deve ser positivo!");
 
-        Pedido pedido = toPedido(pedidoDTO);
+        Pedido pedido = pedidoConverter.convertToPedido(pedidoDTO);
         this.pedidoRepository.save(pedido);
     }
 
@@ -49,25 +52,15 @@ public class PedidoService {
 
         Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
-        Assert.notNull(pedidoDTO.getValor(), "Valor não pode ser nulo!");
+        Assert.isTrue(pedidoDTO.getValor() > 0, "Valor deve ser positivo!");
 
-        Pedido pedido = toPedido(pedidoDTO);
+        Pedido pedido = pedidoConverter.convertToPedido(pedidoDTO);
         this.pedidoRepository.save(pedido);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
-        Pedido pedido = toPedido(findById(id));
+        Pedido pedido = pedidoConverter.convertToPedido(findById(id));
         this.pedidoRepository.delete(pedido);
-    }
-
-    public PedidoDTO toPedidoDTO(Pedido pedido) {
-        PedidoDTO pedidoDTO = new PedidoDTO(pedido.getId(), pedido.getData(), pedido.isEntrega(), pedido.getSituacao(), pedido.isPagamento(), pedido.getValor());
-        return pedidoDTO;
-    }
-
-    public Pedido toPedido(PedidoDTO pedidoDTO) {
-        Pedido pedido = new Pedido(pedidoDTO.getId(), pedidoDTO.getData(), pedidoDTO.isEntrega(), pedidoDTO.getSituacao(), pedidoDTO.isPagamento(), pedidoDTO.getValor());
-        return pedido;
     }
 }
