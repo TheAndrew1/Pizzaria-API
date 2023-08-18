@@ -2,7 +2,6 @@ package com.pizzaria.PizzariaAPI.DTO;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 @Data
