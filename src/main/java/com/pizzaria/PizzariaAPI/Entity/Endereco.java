@@ -25,8 +25,7 @@ public class Endereco {
     @JsonBackReference
     private Cliente cliente;
 
-    @OneToMany
-    @JoinColumn(name = "id_endereco")
+    @OneToMany(mappedBy = "endereco")
     @JsonBackReference
     private List<Pedido> pedidos;
 }

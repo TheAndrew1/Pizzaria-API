@@ -14,6 +14,8 @@ public class EnderecoDTO {
 
     private int numero;
 
+    //private List<PedidoDTO> pedidos;
+
     @JsonBackReference
     @JsonAlias(value = "cliente")
     private ClienteDTO clienteDTO;
