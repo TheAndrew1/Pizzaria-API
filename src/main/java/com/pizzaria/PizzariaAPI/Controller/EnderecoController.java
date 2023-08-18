@@ -14,6 +14,7 @@ import java.util.List;
 public class EnderecoController {
     @Autowired
     private EnderecoService enderecoService;
+
     @GetMapping
     public ResponseEntity<EnderecoDTO> findById(@RequestParam("id") final Long id){
         try {
