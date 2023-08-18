@@ -1,6 +1,7 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,12 +23,11 @@ public class Cliente {
 
     private String senha;
 
-    @OneToMany
-    @JoinColumn(name = "id_pedido")
+    @OneToMany(mappedBy = "cliente")
     @JsonBackReference
     private List<Pedido> pedidos;
 
-    @OneToMany
-    @JoinColumn(name = "id_endereco")
+    @OneToMany(mappedBy = "cliente")
+    @JsonManagedReference
     private List<Endereco> enderecos;
 }

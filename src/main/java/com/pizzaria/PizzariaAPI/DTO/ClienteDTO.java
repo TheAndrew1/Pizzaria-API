@@ -14,7 +14,9 @@ public class ClienteDTO {
 
     private String email;
 
-    private List<PedidoDTO> pedidos;
+    private String senha;
+
+    //private List<PedidoDTO> pedidos;
 
     private List<EnderecoDTO> enderecos;
 }

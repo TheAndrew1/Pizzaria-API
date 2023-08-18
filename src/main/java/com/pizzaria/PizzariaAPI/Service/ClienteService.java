@@ -38,13 +38,12 @@ public class ClienteService {
     public void create(final ClienteDTO clienteDTO){
         Assert.isTrue(!clienteDTO.getNome().isBlank(), "Nome inválido!");
 
-        Assert.notNull(clienteDTO.getIdade(), "Idade não pode ser nula!");
-        Assert.isTrue(clienteDTO.getIdade() > 0, "Idade não pode ser negativa!");
+        Assert.isTrue(clienteDTO.getIdade() > 0, "Idade deve ser maior que 0!");
 
         Assert.isTrue(!clienteDTO.getEmail().isBlank(), "Deve conter email!");
         Assert.isTrue(clienteDTO.getEmail().matches("[a-zA-Z0-9]+@[a-z]+[.]{1}[a-z]+"), "Formato do email inválido!");
 
-        //Assert.isTrue(!clienteDTO.getSenha().isBlank(), "Deve conter senha!");
+        Assert.isTrue(!clienteDTO.getSenha().isBlank(), "Deve conter senha!");
 
         Cliente cliente = clienteConverter.convertToCliente(clienteDTO);
         this.clienteRepository.save(cliente);
@@ -58,13 +57,12 @@ public class ClienteService {
 
         Assert.isTrue(!clienteDTO.getNome().isBlank(), "Nome inválido!");
 
-        Assert.notNull(clienteDTO.getIdade(), "Idade não pode ser nula!");
-        Assert.isTrue(clienteDTO.getIdade() > 0, "Idade não pode ser negativa!");
+        Assert.isTrue(clienteDTO.getIdade() > 0, "Idade deve ser maior que 0!");
 
         Assert.isTrue(!clienteDTO.getEmail().isBlank(), "Deve conter email!");
         Assert.isTrue(clienteDTO.getEmail().matches("[a-zA-Z0-9]+@[a-z]+[.]{1}[a-z]+"), "Formato do email inválido!");
 
-        //Assert.isTrue(!clienteDTO.getSenha().isBlank(), "Deve conter senha!");
+        Assert.isTrue(!clienteDTO.getSenha().isBlank(), "Deve conter senha!");
 
         Cliente cliente = clienteConverter.convertToCliente(clienteDTO);
         this.clienteRepository.save(cliente);
