@@ -1,11 +1,10 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
-@Getter @Setter
+@Data
 public class ClienteDTO {
     private Long id;
 
@@ -15,19 +14,7 @@ public class ClienteDTO {
 
     private String email;
 
-    private String senha;
-
     private List<PedidoDTO> pedidos;
 
     private List<EnderecoDTO> enderecos;
-
-    public ClienteDTO(){}
-
-    public ClienteDTO(Long id, String nome, int idade, String email, String senha){
-        this.id = id;
-        this.nome = nome;
-        this.idade = idade;
-        this.email = email;
-        this.senha = senha;
-    }
 }

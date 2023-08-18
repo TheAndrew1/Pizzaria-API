@@ -1,7 +1,7 @@
 package com.pizzaria.PizzariaAPI.Controller;
 
-import com.pizzaria.PizzariaAPI.DTO.ClienteDTO;
-import com.pizzaria.PizzariaAPI.Service.ClienteService;
+import com.pizzaria.PizzariaAPI.DTO.EnderecoDTO;
+import com.pizzaria.PizzariaAPI.Service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,36 +10,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cliente")
-public class ClienteController {
+@RequestMapping("/endereco")
+public class EnderecoController {
     @Autowired
-    private ClienteService clienteService;
+    private EnderecoService enderecoService;
     @GetMapping
-    public ResponseEntity<ClienteDTO> findById(@RequestParam("id") final Long id){
+    public ResponseEntity<EnderecoDTO> findById(@RequestParam("id") final Long id){
         try {
-            ClienteDTO clienteDTO = this.clienteService.findById(id);
+            EnderecoDTO enderecoDTO = this.enderecoService.findById(id);
 
-            return ResponseEntity.ok(clienteDTO);
+            return ResponseEntity.ok(enderecoDTO);
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(new ClienteDTO());
+            return ResponseEntity.badRequest().body(new EnderecoDTO());
         }
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<ClienteDTO>> findAll(){
+    public ResponseEntity<List<EnderecoDTO>> findAll(){
         try {
-            List<ClienteDTO> clientesDTO = this.clienteService.findAll();
+            List<EnderecoDTO> enderecosDTO = this.enderecoService.findAll();
 
-            return ResponseEntity.ok(clientesDTO);
+            return ResponseEntity.ok(enderecosDTO);
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(new ArrayList<ClienteDTO>());
+            return ResponseEntity.badRequest().body(new ArrayList<EnderecoDTO>());
         }
     }
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody final ClienteDTO clienteDTO){
+    public ResponseEntity<String> create(@RequestBody final EnderecoDTO enderecoDTO){
         try {
-            this.clienteService.create(clienteDTO);
+            this.enderecoService.create(enderecoDTO);
 
             return ResponseEntity.ok("Cadastrado com sucesso!");
         }catch (Exception e){
@@ -48,9 +48,9 @@ public class ClienteController {
     }
 
     @PutMapping
-    public ResponseEntity<String> update(@RequestParam("id") final Long id, @RequestBody final ClienteDTO clienteDTO){
+    public ResponseEntity<String> update(@RequestParam("id") final Long id, @RequestBody final EnderecoDTO enderecoDTO){
         try {
-            this.clienteService.update(id, clienteDTO);
+            this.enderecoService.update(id, enderecoDTO);
 
             return ResponseEntity.ok("Editado com sucesso!");
         }catch (Exception e){
@@ -61,7 +61,7 @@ public class ClienteController {
     @DeleteMapping
     public ResponseEntity<String> delete(@RequestParam("id") final Long id){
         try {
-            this.clienteService.delete(id);
+            this.enderecoService.delete(id);
 
             return ResponseEntity.ok("Exlcuido com sucesso!");
         }catch (Exception e){

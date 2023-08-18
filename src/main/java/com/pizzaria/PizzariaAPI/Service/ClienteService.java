@@ -1,5 +1,6 @@
 package com.pizzaria.PizzariaAPI.Service;
 
+import com.pizzaria.PizzariaAPI.Convert.ClienteConverter;
 import com.pizzaria.PizzariaAPI.DTO.ClienteDTO;
 import com.pizzaria.PizzariaAPI.Entity.Cliente;
 import com.pizzaria.PizzariaAPI.Repository.ClienteRepository;
@@ -15,9 +16,11 @@ import java.util.List;
 public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
+    @Autowired
+    private ClienteConverter clienteConverter;
 
     public ClienteDTO findById(final Long id){
-        return toClienteDTO(this.clienteRepository.findById(id).orElseThrow());
+        return clienteConverter.convertToClienteDTO(this.clienteRepository.findById(id).orElseThrow());
     }
 
     public List<ClienteDTO> findAll(){
@@ -25,7 +28,7 @@ public class ClienteService {
         List<ClienteDTO> clientesDTO = new ArrayList<>();
 
         for (Cliente cliente : clientes){
-            clientesDTO.add(toClienteDTO(cliente));
+            clientesDTO.add(clienteConverter.convertToClienteDTO(cliente));
         }
 
         return clientesDTO;
@@ -41,9 +44,9 @@ public class ClienteService {
         Assert.isTrue(!clienteDTO.getEmail().isBlank(), "Deve conter email!");
         Assert.isTrue(clienteDTO.getEmail().matches("[a-zA-Z0-9]+@[a-z]+[.]{1}[a-z]+"), "Formato do email inválido!");
 
-        Assert.isTrue(!clienteDTO.getSenha().isBlank(), "Deve conter senha!");
+        //Assert.isTrue(!clienteDTO.getSenha().isBlank(), "Deve conter senha!");
 
-        Cliente cliente = toCliente(clienteDTO);
+        Cliente cliente = clienteConverter.convertToCliente(clienteDTO);
         this.clienteRepository.save(cliente);
     }
 
@@ -61,25 +64,15 @@ public class ClienteService {
         Assert.isTrue(!clienteDTO.getEmail().isBlank(), "Deve conter email!");
         Assert.isTrue(clienteDTO.getEmail().matches("[a-zA-Z0-9]+@[a-z]+[.]{1}[a-z]+"), "Formato do email inválido!");
 
-        Assert.isTrue(!clienteDTO.getSenha().isBlank(), "Deve conter senha!");
+        //Assert.isTrue(!clienteDTO.getSenha().isBlank(), "Deve conter senha!");
 
-        Cliente cliente = toCliente(clienteDTO);
+        Cliente cliente = clienteConverter.convertToCliente(clienteDTO);
         this.clienteRepository.save(cliente);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void delete(final Long id){
-        Cliente cliente = toCliente(findById(id));
+        Cliente cliente = clienteConverter.convertToCliente(findById(id));
         this.clienteRepository.delete(cliente);
-    }
-
-    public ClienteDTO toClienteDTO(final Cliente cliente){
-        ClienteDTO clienteDTO = new ClienteDTO(cliente.getId(), cliente.getNome(), cliente.getIdade(), cliente.getEmail(), cliente.getSenha());
-        return clienteDTO;
-    }
-
-    public Cliente toCliente(final ClienteDTO clienteDTO){
-        Cliente cliente = new Cliente(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getIdade(), clienteDTO.getEmail(), clienteDTO.getSenha());
-        return cliente;
     }
 }

@@ -1,5 +1,6 @@
 package com.pizzaria.PizzariaAPI.Service;
 
+import com.pizzaria.PizzariaAPI.Convert.EnderecoConverter;
 import com.pizzaria.PizzariaAPI.DTO.EnderecoDTO;
 import com.pizzaria.PizzariaAPI.Entity.Endereco;
 import com.pizzaria.PizzariaAPI.Repository.EnderecoRepository;
@@ -10,23 +11,26 @@ import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EnderecoService {
     @Autowired
     private EnderecoRepository enderecoRepository;
+    @Autowired
+    private EnderecoConverter enderecoConverter;
 
     public EnderecoDTO findById(final Long id){
-        return toEnderecoDTO(this.enderecoRepository.findById(id).orElseThrow());
+        return enderecoConverter.convertToEnderecoDTO(this.enderecoRepository.findById(id).orElseThrow());
     }
 
     public List<EnderecoDTO> findAll(){
         List<Endereco> enderecos =  this.enderecoRepository.findAll();
         List<EnderecoDTO> enderecosDTO = new ArrayList<>();
 
-        for (Endereco endereco : enderecos){
-            enderecosDTO.add(toEnderecoDTO(endereco));
-        }
+        enderecosDTO = enderecos.stream()
+                .map(endereco -> enderecoConverter.convertToEnderecoDTO(endereco))
+                .collect(Collectors.toList());
 
         return enderecosDTO;
     }
@@ -40,7 +44,7 @@ public class EnderecoService {
         Assert.notNull(enderecoDTO.getNumero(), "Número da residência não pode nula!");
         Assert.isTrue(enderecoDTO.getNumero() > 0, "Número da residência não pode ser negativa!");
 
-        Endereco endereco = toEndereco(enderecoDTO);
+        Endereco endereco = enderecoConverter.convertToEndereco(enderecoDTO);
         this.enderecoRepository.save(endereco);
     }
 
@@ -57,23 +61,13 @@ public class EnderecoService {
         Assert.notNull(enderecoDTO.getNumero(), "Número da residência não pode nula!");
         Assert.isTrue(enderecoDTO.getNumero() > 0, "Número da residência não pode ser negativa!");
 
-        Endereco endereco = toEndereco(enderecoDTO);
+        Endereco endereco = enderecoConverter.convertToEndereco(enderecoDTO);
         this.enderecoRepository.save(endereco);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void delete(final Long id){
-        Endereco endereco = toEndereco(findById(id));
+        Endereco endereco = enderecoConverter.convertToEndereco(findById(id));
         this.enderecoRepository.delete(endereco);
-    }
-
-    public EnderecoDTO toEnderecoDTO(final Endereco endereco){
-        EnderecoDTO enderecoDTO = new EnderecoDTO(endereco.getId(), endereco.getBairro(), endereco.getRua(), endereco.getNumero());
-        return enderecoDTO;
-    }
-
-    public Endereco toEndereco(final EnderecoDTO enderecoDTO){
-        Endereco endereco = new Endereco(enderecoDTO.getId(), enderecoDTO.getBairro(), enderecoDTO.getRua(), enderecoDTO.getNumero());
-        return endereco;
     }
 }
