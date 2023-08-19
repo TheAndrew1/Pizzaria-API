@@ -28,7 +28,12 @@ public class Produto {
     @JsonManagedReference
     private List<Sabor> sabores;
 
-    @ManyToMany(mappedBy = "produtos")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "tb_pedido_produto",
+            joinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_pedido", referencedColumnName = "id")
+    )
     @JsonBackReference
     private List<Pedido> pedidos;
 }

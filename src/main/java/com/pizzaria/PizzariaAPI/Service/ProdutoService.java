@@ -37,7 +37,7 @@ public class ProdutoService {
     @Transactional(rollbackFor = Exception.class)
     public void create(ProdutoDTO produtoDTO) {
         Assert.isTrue(!produtoDTO.getNome().isBlank(), "Deve conter nome do produto!");
-        Assert.isTrue(produtoDTO.getValor() > 0, "Valor deve ser positivo!");
+        Assert.isTrue(produtoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
         Produto produto = produtoConverter.convertToProduto(produtoDTO);
         this.produtoRepository.save(produto);
@@ -50,7 +50,7 @@ public class ProdutoService {
         Assert.isTrue(produtoDatabase.getId().equals(produtoDTO.getId()), "Produtos não conferem!");
 
         Assert.isTrue(!produtoDTO.getNome().isBlank(), "Deve conter nome do produto!");
-        Assert.isTrue(produtoDTO.getValor() > 0, "Valor deve ser positivo!");
+        Assert.isTrue(produtoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
         Produto produto = produtoConverter.convertToProduto(produtoDTO);
         this.produtoRepository.save(produto);

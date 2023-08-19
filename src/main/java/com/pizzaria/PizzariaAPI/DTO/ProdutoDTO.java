@@ -1,6 +1,8 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pizzaria.PizzariaAPI.Entity.Tamanho;
 import lombok.Data;
@@ -19,6 +21,6 @@ public class ProdutoDTO {
 
     private List<SaborDTO> sabores;
 
-    @JsonBackReference
+    @JsonIgnore
     private List<PedidoDTO> pedidos;
 }

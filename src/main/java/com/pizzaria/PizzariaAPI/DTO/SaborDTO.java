@@ -1,6 +1,6 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import java.util.List;

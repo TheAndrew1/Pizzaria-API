@@ -40,8 +40,9 @@ public class Pedido {
     @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
 
-    @ManyToMany
-    @JoinColumn(name = "id_produto")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            mappedBy = "pedidos")
     @JsonManagedReference
     private List<Produto> produtos;
 }
