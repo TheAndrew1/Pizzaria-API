@@ -1,15 +1,15 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tb_sabor", schema = "public")
-@Getter @Setter
+@Data
 public class Sabor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,17 +25,6 @@ public class Sabor {
 
     @ManyToMany
     @JoinColumn(name = "id_produto")
-    @JsonIgnore
+    @JsonBackReference
     private List<Produto> produtos;
-
-    public Sabor() {
-    }
-
-    public Sabor(Long id, String nome, String descricao, String observacao, double valor) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.observacao = observacao;
-        this.valor = valor;
-    }
 }

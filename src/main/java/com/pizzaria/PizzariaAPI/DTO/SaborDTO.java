@@ -1,11 +1,11 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
 
 import java.util.List;
 
-@Getter @Setter
+@Data
 public class SaborDTO {
     private Long id;
 
@@ -17,16 +17,6 @@ public class SaborDTO {
 
     private double valor;
 
+    @JsonBackReference
     private List<ProdutoDTO> produtos;
-
-    public SaborDTO() {
-    }
-
-    public SaborDTO(Long id, String nome, String descricao, String observacao, double valor) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.observacao = observacao;
-        this.valor = valor;
-    }
 }

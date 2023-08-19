@@ -2,6 +2,7 @@ package com.pizzaria.PizzariaAPI.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,9 +23,10 @@ public class Produto {
 
     private double valor;
 
-//    @ManyToMany
-//    @JoinColumn(name = "id_sabor")
-//    private List<Sabor> sabores;
+    @ManyToMany(mappedBy = "produtos")
+    @JoinColumn(name = "id_sabor")
+    @JsonManagedReference
+    private List<Sabor> sabores;
 
     @ManyToMany(mappedBy = "produtos")
     @JsonBackReference
