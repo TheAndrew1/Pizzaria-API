@@ -30,5 +30,6 @@ public class PedidoDTO {
     @JsonAlias(value = "funcionario")
     private FuncionarioDTO funcionarioDTO;
 
-    //private List<ProdutoDTO> produtos;
+    @JsonManagedReference
+    private List<ProdutoDTO> produtos;
 }

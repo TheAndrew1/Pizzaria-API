@@ -1,8 +1,7 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -41,8 +40,8 @@ public class Pedido {
     @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
 
-//    @ManyToMany
-//    @JoinColumn(name = "id_produto")
-//    @JsonManagedReference
-//    private List<Produto> produtos;
+    @ManyToMany
+    @JoinColumn(name = "id_produto")
+    @JsonManagedReference
+    private List<Produto> produtos;
 }

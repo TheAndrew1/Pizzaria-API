@@ -1,12 +1,12 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pizzaria.PizzariaAPI.Entity.Tamanho;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
-@Getter @Setter
+@Data
 public class ProdutoDTO {
     private Long id;
 
@@ -16,16 +16,8 @@ public class ProdutoDTO {
 
     private double valor;
 
-    private List<SaborDTO> sabores;
+    //private List<SaborDTO> sabores;
 
+    @JsonBackReference
     private List<PedidoDTO> pedidos;
-
-    public ProdutoDTO(){}
-
-    public ProdutoDTO(Long id, String nome, Tamanho tamanho, double valor){
-        this.id = id;
-        this.nome = nome;
-        this.tamanho = tamanho;
-        this.valor = valor;
-    }
 }

@@ -1,15 +1,15 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tb_produto", schema = "public")
-@Getter @Setter
+@Data
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,26 +17,16 @@ public class Produto {
 
     private String nome;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(value = EnumType.ORDINAL)
     private Tamanho tamanho;
 
     private double valor;
 
-    @ManyToMany
-    @JoinColumn(name = "id_sabor")
-    private List<Sabor> sabores;
+//    @ManyToMany
+//    @JoinColumn(name = "id_sabor")
+//    private List<Sabor> sabores;
 
-    @ManyToMany
-    @JoinColumn(name = "id_pedido")
-    @JsonIgnore
+    @ManyToMany(mappedBy = "produtos")
+    @JsonBackReference
     private List<Pedido> pedidos;
-
-    public Produto(){}
-
-    public Produto(Long id, String nome, Tamanho tamanho, double valor){
-        this.id = id;
-        this.nome = nome;
-        this.tamanho = tamanho;
-        this.valor = valor;
-    }
 }
