@@ -1,6 +1,6 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;
@@ -17,6 +17,6 @@ public class SaborDTO {
 
     private double valor;
 
-    @JsonBackReference
+    @JsonIgnore
     private List<ProdutoDTO> produtos;
 }

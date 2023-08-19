@@ -1,7 +1,6 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -23,8 +22,9 @@ public class Produto {
 
     private double valor;
 
-    @ManyToMany(mappedBy = "produtos")
-    @JoinColumn(name = "id_sabor")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            mappedBy = "produtos")
     @JsonManagedReference
     private List<Sabor> sabores;
 

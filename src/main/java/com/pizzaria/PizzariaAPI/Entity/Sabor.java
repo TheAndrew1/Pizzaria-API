@@ -23,8 +23,12 @@ public class Sabor {
 
     private double valor;
 
-    @ManyToMany
-    @JoinColumn(name = "id_produto")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "tb_produto_sabor",
+            joinColumns = @JoinColumn(name = "id_sabor", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id")
+    )
     @JsonBackReference
     private List<Produto> produtos;
 }

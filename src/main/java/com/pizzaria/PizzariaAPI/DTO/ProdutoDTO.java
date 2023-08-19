@@ -17,7 +17,6 @@ public class ProdutoDTO {
 
     private double valor;
 
-    @JsonManagedReference
     private List<SaborDTO> sabores;
 
     @JsonBackReference
