@@ -1,22 +1,18 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
 import com.fasterxml.jackson.annotation.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class SaborDTO {
     private Long id;
-
     private String nome;
-
     private String descricao;
-
     private String observacao;
-
     private double valor;
-
-    @JsonIgnore
+    @JsonBackReference
     private List<ProdutoDTO> produtos;
 }
