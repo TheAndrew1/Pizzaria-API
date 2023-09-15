@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdutoService {
@@ -25,13 +26,8 @@ public class ProdutoService {
 
     public List<ProdutoDTO> findAll() {
         List<Produto> produtos = this.produtoRepository.findAll();
-        List<ProdutoDTO> produtosDTO = new ArrayList<>();
 
-        for (Produto produto : produtos) {
-            produtosDTO.add(produtoConverter.convertToProdutoDTO(produto));
-        }
-
-        return produtosDTO;
+        return produtos.stream().map(item -> produtoConverter.convertToProdutoDTO(item)).collect(Collectors.toList());
     }
 
     @Transactional(rollbackFor = Exception.class)

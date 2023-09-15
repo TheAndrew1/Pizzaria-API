@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SaborService {
@@ -20,18 +20,13 @@ public class SaborService {
     private SaborConverter saborConverter;
 
     public SaborDTO findById(Long id) {
-        return saborConverter.toSaborDTO(this.saborRepository.findById(id).orElseThrow());
+        return saborConverter.convertToSaborDTO(this.saborRepository.findById(id).orElseThrow());
     }
 
     public List<SaborDTO> findAll() {
         List<Sabor> sabores = this.saborRepository.findAll();
-        List<SaborDTO> saboresDTO = new ArrayList<>();
 
-        for (Sabor sabor : sabores) {
-            saboresDTO.add(saborConverter.toSaborDTO(sabor));
-        }
-
-        return saboresDTO;
+        return sabores.stream().map(item -> saborConverter.convertToSaborDTO(item)).collect(Collectors.toList());
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -40,7 +35,7 @@ public class SaborService {
         Assert.isTrue(!saborDTO.getDescricao().isBlank(), "Deve conter descrição do sabor!");
         Assert.isTrue(saborDTO.getValor() > 0, "Valor deve ser positivo!");
 
-        Sabor sabor = saborConverter.toSabor(saborDTO);
+        Sabor sabor = saborConverter.convertToSabor(saborDTO);
         this.saborRepository.save(sabor);
     }
 
@@ -54,13 +49,13 @@ public class SaborService {
         Assert.isTrue(!saborDTO.getDescricao().isBlank(), "Deve conter descrição do sabor!");
         Assert.isTrue(saborDTO.getValor() > 0, "Valor deve ser positivo!");
 
-        Sabor sabor = saborConverter.toSabor(saborDTO);
+        Sabor sabor = saborConverter.convertToSabor(saborDTO);
         this.saborRepository.save(sabor);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
-        Sabor sabor = saborConverter.toSabor(findById(id));
+        Sabor sabor = saborConverter.convertToSabor(findById(id));
         this.saborRepository.delete(sabor);
     }
 }

@@ -12,12 +12,12 @@ public class SaborConverter {
     private ModelMapper modelMapper;
 
 
-    public SaborDTO toSaborDTO(Sabor sabor) {
+    public SaborDTO convertToSaborDTO(Sabor sabor) {
         SaborDTO saborDTO = modelMapper.map(sabor, SaborDTO.class);
         return saborDTO;
     }
 
-    public Sabor toSabor(SaborDTO saborDTO) {
+    public Sabor convertToSabor(SaborDTO saborDTO) {
         Sabor sabor = modelMapper.map(saborDTO, Sabor.class);
         return sabor;
     }

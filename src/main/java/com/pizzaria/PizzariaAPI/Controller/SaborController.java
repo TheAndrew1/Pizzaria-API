@@ -33,7 +33,7 @@ public class SaborController {
 
             return ResponseEntity.ok(saboresDTO);
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(new ArrayList<SaborDTO>());
+            return ResponseEntity.badRequest().body(new ArrayList<>());
         }
     }
 

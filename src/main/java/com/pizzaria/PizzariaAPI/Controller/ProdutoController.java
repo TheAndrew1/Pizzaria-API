@@ -33,7 +33,7 @@ public class ProdutoController {
 
             return ResponseEntity.ok(produtoDTO);
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(new ArrayList<ProdutoDTO>());
+            return ResponseEntity.badRequest().body(new ArrayList<>());
         }
     }
 
