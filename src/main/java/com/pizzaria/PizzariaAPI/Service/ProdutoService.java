@@ -2,6 +2,7 @@ package com.pizzaria.PizzariaAPI.Service;
 
 import com.pizzaria.PizzariaAPI.Convert.ProdutoConverter;
 import com.pizzaria.PizzariaAPI.DTO.ProdutoDTO;
+import com.pizzaria.PizzariaAPI.DTO.SaborDTO;
 import com.pizzaria.PizzariaAPI.Entity.Produto;
 import com.pizzaria.PizzariaAPI.Repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class ProdutoService {
         Assert.isTrue(!produtoDTO.getNome().isBlank(), "Deve conter nome do produto!");
         Assert.isTrue(produtoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
+        validarTamanhoSabores(produtoDTO);
+
         Produto produto = produtoConverter.convertToProduto(produtoDTO);
         this.produtoRepository.save(produto);
     }
@@ -48,6 +51,8 @@ public class ProdutoService {
         Assert.isTrue(!produtoDTO.getNome().isBlank(), "Deve conter nome do produto!");
         Assert.isTrue(produtoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
+        validarTamanhoSabores(produtoDTO);
+
         Produto produto = produtoConverter.convertToProduto(produtoDTO);
         this.produtoRepository.save(produto);
     }
@@ -56,5 +61,23 @@ public class ProdutoService {
     public void delete(Long id) {
         Produto produto = produtoConverter.convertToProduto(findById(id));
         this.produtoRepository.delete(produto);
+    }
+
+    public void validarTamanhoSabores(ProdutoDTO produtoDTO){
+        if (produtoDTO.getTamanho() != null){
+            Assert.isTrue(produtoDTO.getTamanho().getQuantidadeSabores() >= produtoDTO.getSabores().size(), "Quantidade de sabores não condiz coom o tamanho da pizza!");
+            calcularPreco(produtoDTO);
+        }else {
+            Assert.isTrue(produtoDTO.getSabores() == null, "Apenas pizzas devem conter sabores!");
+            Assert.isTrue(produtoDTO.getValor() != 0, "Preço do produto não pode ser zero!");
+        }
+    }
+
+    public double calcularPreco(ProdutoDTO produtoDTO) {
+        double preco = 0;
+        for(SaborDTO saborDTO : produtoDTO.getSabores()){
+            preco += saborDTO.getValor();
+        }
+        return preco;
     }
 }
