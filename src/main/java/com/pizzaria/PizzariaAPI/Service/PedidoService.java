@@ -9,11 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PedidoService {
@@ -28,13 +26,8 @@ public class PedidoService {
 
     public List<PedidoDTO> findAll() {
         List<Pedido> pedidos = this.pedidoRepository.findAll();
-        List<PedidoDTO> pedidosDTO = new ArrayList<>();
 
-        for (Pedido pedido : pedidos) {
-            pedidosDTO.add(pedidoConverter.convertToPedidoDTO(pedido));
-        }
-
-        return pedidosDTO;
+        return pedidos.stream().map(item -> pedidoConverter.convertToPedidoDTO(item)).collect(Collectors.toList());
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -43,7 +36,7 @@ public class PedidoService {
 
         Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
-        Assert.isTrue(pedidoDTO.getValor() > 0, "Valor deve ser positivo!");
+        Assert.isTrue(pedidoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
         Pedido pedido = pedidoConverter.convertToPedido(pedidoDTO);
         this.pedidoRepository.save(pedido);
@@ -58,7 +51,7 @@ public class PedidoService {
         pedidoDTO.setData(pedidoDatabase.getData());
         Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
-        Assert.isTrue(pedidoDTO.getValor() > 0, "Valor deve ser positivo!");
+        Assert.isTrue(pedidoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
         Pedido pedido = pedidoConverter.convertToPedido(pedidoDTO);
         this.pedidoRepository.save(pedido);
