@@ -17,6 +17,7 @@ public class Produto {
     @Enumerated(value = EnumType.ORDINAL)
     private Tamanho tamanho;
     private double valor;
+    private String observacao;
     @ManyToMany
     @JoinTable(
             name = "tb_produto_sabor",

@@ -15,7 +15,6 @@ public class Sabor {
     private Long id;
     private String nome;
     private String descricao;
-    private String observacao;
     private double valor;
     @ManyToMany(mappedBy = "sabores")
     private List<Produto> produtos;
