@@ -15,7 +15,6 @@ public class ProdutoDTO {
     private String nome;
     private Tamanho tamanho;
     private double valor;
-    @JsonManagedReference
     private List<SaborDTO> sabores;
     @JsonBackReference
     private List<PedidoDTO> pedidos;

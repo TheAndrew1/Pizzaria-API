@@ -17,11 +17,6 @@ public class Sabor {
     private String descricao;
     private String observacao;
     private double valor;
-    @ManyToMany
-    @JoinTable(
-            name = "tb_produto_sabor",
-            joinColumns = @JoinColumn(name = "id_sabor", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id")
-    )
+    @ManyToMany(mappedBy = "sabores")
     private List<Produto> produtos;
 }

@@ -13,6 +13,6 @@ public class SaborDTO {
     private String descricao;
     private String observacao;
     private double valor;
-    @JsonBackReference
+    @JsonIgnore
     private List<ProdutoDTO> produtos;
 }

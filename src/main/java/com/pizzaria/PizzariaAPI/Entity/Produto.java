@@ -17,7 +17,12 @@ public class Produto {
     @Enumerated(value = EnumType.ORDINAL)
     private Tamanho tamanho;
     private double valor;
-    @ManyToMany(mappedBy = "produtos")
+    @ManyToMany
+    @JoinTable(
+            name = "tb_produto_sabor",
+            joinColumns = @JoinColumn(name = "id_produto"),
+            inverseJoinColumns = @JoinColumn(name = "id_sabor")
+    )
     private List<Sabor> sabores;
     @ManyToMany
     @JoinTable(
