@@ -12,9 +12,13 @@ import java.util.List;
 public class Sabor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
+    @Column(name = "nome", nullable = false, unique = true, length = 50)
     private String nome;
+    @Column(name = "descricao", nullable = false, length = 100)
     private String descricao;
+    @Column(name = "valor", nullable = false)
     private double valor;
     @ManyToMany(mappedBy = "sabores")
     private List<Produto> produtos;
