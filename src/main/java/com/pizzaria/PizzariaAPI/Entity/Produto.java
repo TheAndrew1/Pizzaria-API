@@ -12,11 +12,16 @@ import java.util.List;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
     @Enumerated(value = EnumType.ORDINAL)
+    @Column(name = "tamanho")
     private Tamanho tamanho;
+    @Column(name = "valor")
     private double valor;
+    @Column(name = "observacao", length = 100)
     private String observacao;
     @ManyToMany
     @JoinTable(
