@@ -30,11 +30,6 @@ public class Produto {
             inverseJoinColumns = @JoinColumn(name = "id_sabor")
     )
     private List<Sabor> sabores;
-    @ManyToMany
-    @JoinTable(
-            name = "tb_pedido_produto",
-            joinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_pedido", referencedColumnName = "id")
-    )
+    @ManyToMany(mappedBy = "produtos")
     private List<Pedido> pedidos;
 }
