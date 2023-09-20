@@ -19,16 +19,16 @@ public class PedidoConverter {
 
     public PedidoDTO convertToPedidoDTO(Pedido pedido) {
         PedidoDTO pedidoDTO = modelMapper.map(pedido, PedidoDTO.class);
-        pedidoDTO.setClienteDTO(modelMapper.map(pedido.getCliente(), ClienteDTO.class));
-        pedidoDTO.setEnderecoDTO(modelMapper.map(pedido.getEndereco(), EnderecoDTO.class));
+//        pedidoDTO.setCliente(modelMapper.map(pedido.getCliente(), ClienteDTO.class));
+//        pedidoDTO.setEndereco(modelMapper.map(pedido.getEndereco(), EnderecoDTO.class));
 //        pedidoDTO.setFuncionarioDTO(modelMapper.map(pedido.getFuncionario(), FuncionarioDTO.class));
         return pedidoDTO;
     }
 
     public Pedido convertToPedido(PedidoDTO pedidoDTO) {
         Pedido pedido = modelMapper.map(pedidoDTO, Pedido.class);
-        pedido.setCliente(modelMapper.map(pedidoDTO.getClienteDTO(), Cliente.class));
-        pedido.setEndereco(modelMapper.map(pedidoDTO.getEnderecoDTO(), Endereco.class));
+//        pedido.setCliente(modelMapper.map(pedidoDTO.getCliente(), Cliente.class));
+//        pedido.setEndereco(modelMapper.map(pedidoDTO.getEndereco(), Endereco.class));
 //        pedido.setFuncionario(modelMapper.map(pedidoDTO.getFuncionarioDTO(), Funcionario.class));
         return pedido;
     }

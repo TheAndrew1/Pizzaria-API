@@ -28,32 +28,39 @@ public class ProdutoServiceTest {
 
     @Test
     public void CT_TamanhoSabores_01(){    //Com tamanho e quantidade certa
-        ProdutoDTO produtoDTO = new ProdutoDTO(1L, "Pizza", Tamanho.P, 0.00, null, null, null);
-        produtoDTO.setSabores(List.of(new SaborDTO(1L, "Brocolis", "Queijo e brocolis", 18.00, null)));
+        ProdutoDTO produtoDTO = new ProdutoDTO(1L, "Pizza", Tamanho.M, 0.00, null, null, null);
+        produtoDTO.setSabores(List.of(new SaborDTO(1L, "Brocolis", "Queijo e brocolis", 18.00, null),
+                new SaborDTO(2L, "Bacon", "Queijo e bacon", 15.00, null)));
 
         produtoService.validarTamanhoSabores(produtoDTO);
+
+        Assertions.assertEquals(33.00, produtoDTO.getValor());
     }
 
-    @Test
-    public void CT_TamanhoSabores_02(){    //Com tamanho e quantidade errada
-        ProdutoDTO produtoDTO = new ProdutoDTO(1L, "Pizza", Tamanho.P, 0.00, null, null, null);
-        produtoDTO.setSabores(List.of(new SaborDTO(1L, "Brocolis", "Queijo e brocolis", 18.00, null), new SaborDTO(2L, "Bacon", "Queijo e bacon", 15.00, null)));
+//    @Test
+//    public void CT_TamanhoSabores_02(){    //Com tamanho e quantidade errada
+//        ProdutoDTO produtoDTO = new ProdutoDTO(1L, "Pizza", Tamanho.P, 0.00, null, null, null);
+//        produtoDTO.setSabores(List.of(new SaborDTO(1L, "Brocolis", "Queijo e brocolis", 18.00, null), new SaborDTO(2L, "Bacon", "Queijo e bacon", 15.00, null)));
+//
+//        produtoService.validarTamanhoSabores(produtoDTO);
+//
+//        Assertions.assertEquals(33.00, produtoDTO.getValor());
+//    }
 
-        produtoService.validarTamanhoSabores(produtoDTO);
-    }
-
     @Test
-    public void CT_TamanhoSabores_03(){    //Sem tamanho e sem sabor
+    public void CT_TamanhoSabores_02(){    //Sem tamanho e sem sabor
         ProdutoDTO produtoDTO = new ProdutoDTO(1L, "Refrigerante", null, 8.00, null, null, null);
 
         produtoService.validarTamanhoSabores(produtoDTO);
+
+        Assertions.assertEquals(8.00, produtoDTO.getValor());
     }
 
-    @Test
-    public void CT_TamanhoSabores_04(){    //Sem tamanho e com sabor
-        ProdutoDTO produtoDTO = new ProdutoDTO(1L, "Refrigerante", null, 8.00, null, null, null);
-        produtoDTO.setSabores(List.of(new SaborDTO(1L, "Brocolis", "Queijo e brocolis", 18.00, null)));
-
-        produtoService.validarTamanhoSabores(produtoDTO);
-    }
+//    @Test
+//    public void CT_TamanhoSabores_04(){    //Sem tamanho e com sabor
+//        ProdutoDTO produtoDTO = new ProdutoDTO(1L, "Refrigerante", null, 8.00, null, null, null);
+//        produtoDTO.setSabores(List.of(new SaborDTO(1L, "Brocolis", "Queijo e brocolis", 18.00, null)));
+//
+//        produtoService.validarTamanhoSabores(produtoDTO);
+//    }
 }

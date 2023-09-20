@@ -1,7 +1,9 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -10,6 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "tb_pedido", schema = "public")
 @Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

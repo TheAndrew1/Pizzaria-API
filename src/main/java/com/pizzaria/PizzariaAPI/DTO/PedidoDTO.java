@@ -1,13 +1,16 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
 import com.pizzaria.PizzariaAPI.Entity.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class PedidoDTO {
     private Long id;
     private LocalDate data;

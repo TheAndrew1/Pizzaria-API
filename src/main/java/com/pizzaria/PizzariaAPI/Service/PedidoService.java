@@ -2,6 +2,7 @@ package com.pizzaria.PizzariaAPI.Service;
 
 import com.pizzaria.PizzariaAPI.Convert.PedidoConverter;
 import com.pizzaria.PizzariaAPI.DTO.PedidoDTO;
+import com.pizzaria.PizzariaAPI.DTO.ProdutoDTO;
 import com.pizzaria.PizzariaAPI.Entity.Pedido;
 import com.pizzaria.PizzariaAPI.Repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,19 @@ public class PedidoService {
     public void delete(Long id) {
         Pedido pedido = pedidoConverter.convertToPedido(findById(id));
         this.pedidoRepository.delete(pedido);
+    }
+
+
+    public double calcularPreco(PedidoDTO pedidoDTO) {
+        if (pedidoDTO.getProdutos() != null)
+        {
+            double preco = 0;
+            for(ProdutoDTO produtoDTO : pedidoDTO.getProdutos()){
+                preco += produtoDTO.getValor();
+            }
+            return preco;
+        }
+
+        return 0.00;
     }
 }
