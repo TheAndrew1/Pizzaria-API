@@ -12,12 +12,10 @@ public class PedidoConverter {
     private ModelMapper modelMapper;
 
     public PedidoDTO convertToPedidoDTO(Pedido pedido) {
-        PedidoDTO pedidoDTO = modelMapper.map(pedido, PedidoDTO.class);
-        return pedidoDTO;
+        return modelMapper.map(pedido, PedidoDTO.class);
     }
 
     public Pedido convertToPedido(PedidoDTO pedidoDTO) {
-        Pedido pedido = modelMapper.map(pedidoDTO, Pedido.class);
-        return pedido;
+        return modelMapper.map(pedidoDTO, Pedido.class);
     }
 }

@@ -12,12 +12,10 @@ public class ProdutoConverter {
     private ModelMapper modelMapper;
 
     public ProdutoDTO convertToProdutoDTO(Produto produto) {
-        ProdutoDTO produtoDTO = modelMapper.map(produto, ProdutoDTO.class);
-        return produtoDTO;
+        return modelMapper.map(produto, ProdutoDTO.class);
     }
 
     public Produto convertToProduto(ProdutoDTO produtoDTO) {
-        Produto produto = modelMapper.map(produtoDTO, Produto.class);
-        return produto;
+        return modelMapper.map(produtoDTO, Produto.class);
     }
 }

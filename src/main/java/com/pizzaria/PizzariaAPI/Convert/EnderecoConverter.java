@@ -14,12 +14,10 @@ public class EnderecoConverter {
     private ClienteConverter clienteConverter;
 
     public EnderecoDTO convertToEnderecoDTO(final Endereco endereco){
-        EnderecoDTO enderecoDTO = modelMapper.map(endereco, EnderecoDTO.class);
-        return enderecoDTO;
+        return modelMapper.map(endereco, EnderecoDTO.class);
     }
 
     public Endereco convertToEndereco(final EnderecoDTO enderecoDTO){
-        Endereco endereco = modelMapper.map(enderecoDTO, Endereco.class);
-        return endereco;
+        return modelMapper.map(enderecoDTO, Endereco.class);
     }
 }

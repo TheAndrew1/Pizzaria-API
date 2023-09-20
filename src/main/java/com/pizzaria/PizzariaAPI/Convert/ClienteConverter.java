@@ -11,12 +11,10 @@ public class ClienteConverter {
     @Autowired
     private ModelMapper modelMapper;
     public ClienteDTO convertToClienteDTO(final Cliente cliente){
-        ClienteDTO clienteDTO = modelMapper.map(cliente, ClienteDTO.class);
-        return clienteDTO;
+        return modelMapper.map(cliente, ClienteDTO.class);
     }
 
     public Cliente convertToCliente(final ClienteDTO clienteDTO){
-        Cliente cliente = modelMapper.map(clienteDTO, Cliente.class);
-        return cliente;
+        return modelMapper.map(clienteDTO, Cliente.class);
     }
 }

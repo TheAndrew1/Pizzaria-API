@@ -12,12 +12,10 @@ public class FuncionarioConverter {
     private ModelMapper modelMapper;
 
     public FuncionarioDTO convertToFuncionarioDTO(Funcionario funcionario) {
-        FuncionarioDTO funcionarioDTO = modelMapper.map(funcionario, FuncionarioDTO.class);
-        return funcionarioDTO;
+        return modelMapper.map(funcionario, FuncionarioDTO.class);
     }
 
     public Funcionario convertToFuncionario(FuncionarioDTO funcionarioDTO) {
-        Funcionario funcionario = modelMapper.map(funcionarioDTO, Funcionario.class);
-        return funcionario;
+        return modelMapper.map(funcionarioDTO, Funcionario.class);
     }
 }
