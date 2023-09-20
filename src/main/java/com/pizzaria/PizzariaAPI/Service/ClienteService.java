@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
@@ -26,7 +25,7 @@ public class ClienteService {
     public List<ClienteDTO> findAll(){
         List<Cliente> clientes =  this.clienteRepository.findAll();
 
-        return clientes.stream().map(item -> clienteConverter.convertToClienteDTO(item)).collect(Collectors.toList());
+        return clientes.stream().map(item -> clienteConverter.convertToClienteDTO(item)).toList();
     }
 
     @Transactional(rollbackFor = Exception.class)

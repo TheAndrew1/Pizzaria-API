@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class EnderecoService {
@@ -26,7 +25,7 @@ public class EnderecoService {
     public List<EnderecoDTO> findAll(){
         List<Endereco> enderecos =  this.enderecoRepository.findAll();
 
-        return enderecos.stream().map(item -> enderecoConverter.convertToEnderecoDTO(item)).collect(Collectors.toList());
+        return enderecos.stream().map(item -> enderecoConverter.convertToEnderecoDTO(item)).toList();
     }
 
     @Transactional(rollbackFor = Exception.class)

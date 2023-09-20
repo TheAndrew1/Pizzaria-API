@@ -12,7 +12,6 @@ import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PedidoService {
@@ -28,7 +27,7 @@ public class PedidoService {
     public List<PedidoDTO> findAll() {
         List<Pedido> pedidos = this.pedidoRepository.findAll();
 
-        return pedidos.stream().map(item -> pedidoConverter.convertToPedidoDTO(item)).collect(Collectors.toList());
+        return pedidos.stream().map(item -> pedidoConverter.convertToPedidoDTO(item)).toList();
     }
 
     @Transactional(rollbackFor = Exception.class)

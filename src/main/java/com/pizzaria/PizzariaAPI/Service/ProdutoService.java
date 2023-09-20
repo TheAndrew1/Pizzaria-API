@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProdutoService {
@@ -27,7 +26,7 @@ public class ProdutoService {
     public List<ProdutoDTO> findAll() {
         List<Produto> produtos = this.produtoRepository.findAll();
 
-        return produtos.stream().map(item -> produtoConverter.convertToProdutoDTO(item)).collect(Collectors.toList());
+        return produtos.stream().map(item -> produtoConverter.convertToProdutoDTO(item)).toList();
     }
 
     @Transactional(rollbackFor = Exception.class)
