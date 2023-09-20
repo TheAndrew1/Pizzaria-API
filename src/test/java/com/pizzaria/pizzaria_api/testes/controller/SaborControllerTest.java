@@ -56,7 +56,7 @@ public class SaborControllerTest {
     }
 
     @Test
-    void TestControllerCreate(){
+    void TestControllerCreate01(){  //Certo
         SaborDTO saborCriado = new SaborDTO(1L, "Brócolis", "Queijo, brócoclis e catupiri", 18.00, null);
         String mensagem = "Cadastrado com sucesso!";
 
@@ -67,7 +67,18 @@ public class SaborControllerTest {
     }
 
     @Test
-    void TestControllerUpdate(){
+    void TestControllerCreate02(){  //Falha
+        SaborDTO saborCriado = new SaborDTO(1L, "Brócolis", "Queijo, brócoclis e catupiri", 0.00, null);
+        String mensagem = "Valor deve ser positivo!";
+
+        var resposta = saborController.create(saborCriado);
+
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, resposta.getStatusCode());
+        Assertions.assertEquals(mensagem, resposta.getBody());
+    }
+
+    @Test
+    void TestControllerUpdate01(){  //Certo
         SaborDTO saborEditado = new SaborDTO(1L, "Brócolis", "Queijo, brócoclis e catupiri", 20.00, null);
         String mensagem = "Editado com sucesso!";
 
@@ -78,12 +89,33 @@ public class SaborControllerTest {
     }
 
     @Test
-    void TestControllerDelete(){
+    void TestControllerUpdate02(){  //Falha
+        SaborDTO saborEditado = new SaborDTO(1L, "", "Queijo, brócoclis e catupiri", 20.00, null);
+        String mensagem = "Deve conter nome do sabor!";
+
+        var resposta = saborController.update(1L, saborEditado);
+
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, resposta.getStatusCode());
+        Assertions.assertEquals(mensagem, resposta.getBody());
+    }
+
+    @Test
+    void TestControllerDelete01(){  //Certo
         String mensagem = "Exlcuido com sucesso!";
 
         var resposta = saborController.delete(1L);
 
         Assertions.assertEquals(HttpStatus.OK, resposta.getStatusCode());
+        Assertions.assertEquals(mensagem, resposta.getBody());
+    }
+
+    @Test
+    void TestControllerDelete02(){  //Falha
+        String mensagem = "No value present";
+
+        var resposta = saborController.delete(2L);
+
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, resposta.getStatusCode());
         Assertions.assertEquals(mensagem, resposta.getBody());
     }
 }
