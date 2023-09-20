@@ -1,29 +1,25 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tb_funcionario", schema = "public")
-@Data
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class Funcionario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
-
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
-
+    @Column(name = "login", nullable = false, length = 25)
     private String login;
-
+    @Column(name = "senha", nullable = false, length = 20)
     private String senha;
-
     @OneToMany(mappedBy = "funcionario")
-    @JsonIgnore
     private List<Pedido> pedidos;
 }

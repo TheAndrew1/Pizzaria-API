@@ -1,6 +1,5 @@
 package com.pizzaria.PizzariaAPI.DTO;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pizzaria.PizzariaAPI.Entity.Tamanho;
 import lombok.*;

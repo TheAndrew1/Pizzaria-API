@@ -1,32 +1,29 @@
 package com.pizzaria.PizzariaAPI.Entity;
 
-import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tb_cliente", schema = "public")
-@Data
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
-
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
-
+    @Column(name = "idade", nullable = false)
     private int idade;
-
+    @Column(name = "email", nullable = false, length = 50)
     private String email;
-
+    @Column(name = "senha", nullable = false, length = 20)
     private String senha;
-
     @OneToMany(mappedBy = "cliente")
-    @JsonManagedReference
     private List<Endereco> enderecos;
-
     @OneToMany(mappedBy = "cliente")
-    @JsonIgnore
     private List<Pedido> pedidos;
 }
