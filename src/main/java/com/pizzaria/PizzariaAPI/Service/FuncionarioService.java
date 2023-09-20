@@ -26,7 +26,7 @@ public class FuncionarioService {
     public List<FuncionarioDTO> findAll() {
         List<Funcionario> funcionarios = this.funcionarioRepository.findAll();
 
-        return funcionarios.stream().map(item -> funcionarioConverter.convertToFuncionarioDTO(item)).collect(Collectors.toList());
+        return funcionarios.stream().map(item -> funcionarioConverter.convertToFuncionarioDTO(item)).toList();
     }
 
     @Transactional(rollbackFor = Exception.class)

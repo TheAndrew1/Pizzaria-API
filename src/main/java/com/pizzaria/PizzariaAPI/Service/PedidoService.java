@@ -28,7 +28,7 @@ public class PedidoService {
     public List<PedidoDTO> findAll() {
         List<Pedido> pedidos = this.pedidoRepository.findAll();
 
-        return pedidos.stream().map(item -> pedidoConverter.convertToPedidoDTO(item)).collect(Collectors.toList());
+        return pedidos.stream().map(item -> pedidoConverter.convertToPedidoDTO(item)).toList();
     }
 
     @Transactional(rollbackFor = Exception.class)

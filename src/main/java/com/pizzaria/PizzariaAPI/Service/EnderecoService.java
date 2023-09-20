@@ -26,7 +26,7 @@ public class EnderecoService {
     public List<EnderecoDTO> findAll(){
         List<Endereco> enderecos =  this.enderecoRepository.findAll();
 
-        return enderecos.stream().map(item -> enderecoConverter.convertToEnderecoDTO(item)).collect(Collectors.toList());
+        return enderecos.stream().map(item -> enderecoConverter.convertToEnderecoDTO(item)).toList();
     }
 
     @Transactional(rollbackFor = Exception.class)

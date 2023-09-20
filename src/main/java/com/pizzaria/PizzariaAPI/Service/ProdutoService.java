@@ -27,7 +27,7 @@ public class ProdutoService {
     public List<ProdutoDTO> findAll() {
         List<Produto> produtos = this.produtoRepository.findAll();
 
-        return produtos.stream().map(item -> produtoConverter.convertToProdutoDTO(item)).collect(Collectors.toList());
+        return produtos.stream().map(item -> produtoConverter.convertToProdutoDTO(item)).toList();
     }
 
     @Transactional(rollbackFor = Exception.class)

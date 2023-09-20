@@ -26,7 +26,7 @@ public class SaborService {
     public List<SaborDTO> findAll() {
         List<Sabor> sabores = this.saborRepository.findAll();
 
-        return sabores.stream().map(item -> saborConverter.convertToSaborDTO(item)).collect(Collectors.toList());
+        return sabores.stream().map(item -> saborConverter.convertToSaborDTO(item)).toList();
     }
 
     @Transactional(rollbackFor = Exception.class)
