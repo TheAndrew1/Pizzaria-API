@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootTest
-public class PedidoServiceTest {
+class PedidoServiceTest {
     @Autowired
     PedidoService pedidoService;
 
