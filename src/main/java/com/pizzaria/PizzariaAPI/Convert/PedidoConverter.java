@@ -1,12 +1,6 @@
 package com.pizzaria.PizzariaAPI.Convert;
 
-import com.pizzaria.PizzariaAPI.DTO.ClienteDTO;
-import com.pizzaria.PizzariaAPI.DTO.EnderecoDTO;
-import com.pizzaria.PizzariaAPI.DTO.FuncionarioDTO;
 import com.pizzaria.PizzariaAPI.DTO.PedidoDTO;
-import com.pizzaria.PizzariaAPI.Entity.Cliente;
-import com.pizzaria.PizzariaAPI.Entity.Endereco;
-import com.pizzaria.PizzariaAPI.Entity.Funcionario;
 import com.pizzaria.PizzariaAPI.Entity.Pedido;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +13,11 @@ public class PedidoConverter {
 
     public PedidoDTO convertToPedidoDTO(Pedido pedido) {
         PedidoDTO pedidoDTO = modelMapper.map(pedido, PedidoDTO.class);
-//        pedidoDTO.setCliente(modelMapper.map(pedido.getCliente(), ClienteDTO.class));
-//        pedidoDTO.setEndereco(modelMapper.map(pedido.getEndereco(), EnderecoDTO.class));
-//        pedidoDTO.setFuncionarioDTO(modelMapper.map(pedido.getFuncionario(), FuncionarioDTO.class));
         return pedidoDTO;
     }
 
     public Pedido convertToPedido(PedidoDTO pedidoDTO) {
         Pedido pedido = modelMapper.map(pedidoDTO, Pedido.class);
-//        pedido.setCliente(modelMapper.map(pedidoDTO.getCliente(), Cliente.class));
-//        pedido.setEndereco(modelMapper.map(pedidoDTO.getEndereco(), Endereco.class));
-//        pedido.setFuncionario(modelMapper.map(pedidoDTO.getFuncionarioDTO(), Funcionario.class));
         return pedido;
     }
 }

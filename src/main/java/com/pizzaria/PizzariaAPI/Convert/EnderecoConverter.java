@@ -15,15 +15,11 @@ public class EnderecoConverter {
 
     public EnderecoDTO convertToEnderecoDTO(final Endereco endereco){
         EnderecoDTO enderecoDTO = modelMapper.map(endereco, EnderecoDTO.class);
-        enderecoDTO.setClienteDTO(clienteConverter.convertToClienteDTO(endereco.getCliente()));
-
         return enderecoDTO;
     }
 
     public Endereco convertToEndereco(final EnderecoDTO enderecoDTO){
         Endereco endereco = modelMapper.map(enderecoDTO, Endereco.class);
-        endereco.setCliente(clienteConverter.convertToCliente(enderecoDTO.getClienteDTO()));
-
         return endereco;
     }
 }
