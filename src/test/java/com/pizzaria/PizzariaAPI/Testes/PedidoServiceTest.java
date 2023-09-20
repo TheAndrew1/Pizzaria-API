@@ -1,6 +1,5 @@
 package com.pizzaria.PizzariaAPI.Testes;
 
-import com.pizzaria.PizzariaAPI.DTO.ClienteDTO;
 import com.pizzaria.PizzariaAPI.DTO.PedidoDTO;
 import com.pizzaria.PizzariaAPI.DTO.ProdutoDTO;
 import com.pizzaria.PizzariaAPI.Entity.Pagamento;

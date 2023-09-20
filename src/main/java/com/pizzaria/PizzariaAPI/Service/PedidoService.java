@@ -39,6 +39,8 @@ public class PedidoService {
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
         Assert.isTrue(pedidoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
+        pedidoDTO.setValor(calcularPreco(pedidoDTO));
+
         Pedido pedido = pedidoConverter.convertToPedido(pedidoDTO);
         this.pedidoRepository.save(pedido);
     }
@@ -53,6 +55,8 @@ public class PedidoService {
         Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
         Assert.isTrue(pedidoDTO.getValor() >= 0, "Valor deve ser positivo!");
+
+        pedidoDTO.setValor(calcularPreco(pedidoDTO));
 
         Pedido pedido = pedidoConverter.convertToPedido(pedidoDTO);
         this.pedidoRepository.save(pedido);
