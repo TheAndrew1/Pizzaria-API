@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
@@ -25,13 +25,8 @@ public class ClienteService {
 
     public List<ClienteDTO> findAll(){
         List<Cliente> clientes =  this.clienteRepository.findAll();
-        List<ClienteDTO> clientesDTO = new ArrayList<>();
 
-        for (Cliente cliente : clientes){
-            clientesDTO.add(clienteConverter.convertToClienteDTO(cliente));
-        }
-
-        return clientesDTO;
+        return clientes.stream().map(item -> clienteConverter.convertToClienteDTO(item)).collect(Collectors.toList());
     }
 
     @Transactional(rollbackFor = Exception.class)

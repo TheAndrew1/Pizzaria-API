@@ -1,4 +1,4 @@
-package com.pizzaria.PizzariaAPI.Testes;
+package com.pizzaria.PizzariaAPI.Testes.Service;
 
 import com.pizzaria.PizzariaAPI.DTO.ProdutoDTO;
 import com.pizzaria.PizzariaAPI.DTO.SaborDTO;

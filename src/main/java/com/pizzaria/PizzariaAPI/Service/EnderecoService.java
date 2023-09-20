@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,13 +25,8 @@ public class EnderecoService {
 
     public List<EnderecoDTO> findAll(){
         List<Endereco> enderecos =  this.enderecoRepository.findAll();
-        List<EnderecoDTO> enderecosDTO = new ArrayList<>();
 
-        enderecosDTO = enderecos.stream()
-                .map(endereco -> enderecoConverter.convertToEnderecoDTO(endereco))
-                .collect(Collectors.toList());
-
-        return enderecosDTO;
+        return enderecos.stream().map(item -> enderecoConverter.convertToEnderecoDTO(item)).collect(Collectors.toList());
     }
 
     @Transactional(rollbackFor = Exception.class)
