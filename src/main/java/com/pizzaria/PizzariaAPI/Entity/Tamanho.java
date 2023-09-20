@@ -6,11 +6,11 @@ import lombok.Getter;
 public enum Tamanho {
     P("P", 1), M("M", 2), G("G", 3), GG("GG", 4);
 
-    String tamanho;
+    String tamanhoPizza;
     int quantidadeSabores;
 
     Tamanho(String tamanho, int quantidadeSabores) {
-        this.tamanho = tamanho;
+        this.tamanhoPizza = tamanho;
         this.quantidadeSabores = quantidadeSabores;
     }
 }
