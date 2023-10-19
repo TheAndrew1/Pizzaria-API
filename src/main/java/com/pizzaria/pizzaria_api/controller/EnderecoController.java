@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/endereco")
+@CrossOrigin("http://localhost:4200")
 public class EnderecoController {
     @Autowired
     private EnderecoService enderecoService;

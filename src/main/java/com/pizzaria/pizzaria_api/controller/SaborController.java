@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/sabor")
+@CrossOrigin("http://localhost:4200")
 public class SaborController {
     @Autowired
     private SaborService saborService;
