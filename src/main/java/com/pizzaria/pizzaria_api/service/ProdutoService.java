@@ -67,7 +67,7 @@ public class ProdutoService {
             Assert.isTrue(produtoDTO.getTamanho().getQuantidadeSabores() >= produtoDTO.getSabores().size(), "Quantidade de sabores não condiz coom o tamanho da pizza!");
             produtoDTO.setValor(calcularPreco(produtoDTO));
         }else {
-            Assert.isTrue(produtoDTO.getSabores() == null || produtoDTO.getSabores().equals(new ArrayList<SaborDTO>()), "Apenas pizzas devem conter sabores!");
+            Assert.isTrue(produtoDTO.getSabores() == null, "Apenas pizzas devem conter sabores!");
             Assert.isTrue(produtoDTO.getValor() != 0, "Preço do produto não pode ser zero!");
         }
     }
