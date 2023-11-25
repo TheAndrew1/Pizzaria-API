@@ -4,6 +4,7 @@ import com.pizzaria.pizzaria_api.convert.PedidoConverter;
 import com.pizzaria.pizzaria_api.dto.PedidoDTO;
 import com.pizzaria.pizzaria_api.dto.ProdutoDTO;
 import com.pizzaria.pizzaria_api.entity.Pedido;
+import com.pizzaria.pizzaria_api.entity.Situacao;
 import com.pizzaria.pizzaria_api.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,9 +34,9 @@ public class PedidoService {
     @Transactional(rollbackFor = Exception.class)
     public void create(PedidoDTO pedidoDTO) {
         pedidoDTO.setData(LocalDate.now());
+        pedidoDTO.setSituacao(Situacao.PREPARO);
 
-        Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
-        Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
+        Assert.notNull(pedidoDTO.getPagamento(), "Forma de pagamento não pode ser nulo!");
         Assert.isTrue(pedidoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
         pedidoDTO.setValor(calcularPreco(pedidoDTO));
@@ -50,9 +51,9 @@ public class PedidoService {
         Assert.notNull(pedidoDatabase, "Pedido não encontrado!");
         Assert.isTrue(pedidoDatabase.getId().equals(pedidoDTO.getId()), "Pedidos não conferem!");
 
-        pedidoDTO.setData(pedidoDatabase.getData());
         Assert.notNull(pedidoDTO.getData(), "Data não pode ser nula!");
         Assert.notNull(pedidoDTO.getSituacao(), "Situação não pode ser nula!");
+        Assert.notNull(pedidoDTO.getPagamento(), "Forma de pagamento não pode ser nulo!");
         Assert.isTrue(pedidoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
         pedidoDTO.setValor(calcularPreco(pedidoDTO));
