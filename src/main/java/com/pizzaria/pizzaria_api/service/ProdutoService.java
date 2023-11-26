@@ -31,14 +31,14 @@ public class ProdutoService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void create(ProdutoDTO produtoDTO) {
+    public ProdutoDTO create(ProdutoDTO produtoDTO) {
         Assert.isTrue(!produtoDTO.getNome().isBlank(), "Deve conter nome do produto!");
         Assert.isTrue(produtoDTO.getValor() >= 0, "Valor deve ser positivo!");
 
         validarTamanhoSabores(produtoDTO);
 
         Produto produto = produtoConverter.convertToProduto(produtoDTO);
-        this.produtoRepository.save(produto);
+        return produtoConverter.convertToProdutoDTO(this.produtoRepository.save(produto));
     }
 
     @Transactional(rollbackFor = Exception.class)

@@ -39,13 +39,13 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody final ProdutoDTO produtoDTO){
+    public ResponseEntity<ProdutoDTO> create(@RequestBody final ProdutoDTO produtoDTO){
         try {
-            this.produtoService.create(produtoDTO);
+            ProdutoDTO produtoCadastrado = this.produtoService.create(produtoDTO);
 
-            return ResponseEntity.ok("Cadastrado com sucesso!");
+            return ResponseEntity.ok(produtoCadastrado);
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
