@@ -29,16 +29,15 @@ public class EnderecoService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void create(final EnderecoDTO enderecoDTO){
+    public EnderecoDTO create(final EnderecoDTO enderecoDTO){
         Assert.isTrue(!enderecoDTO.getBairro().isBlank(), "Bairro inválido!");
 
         Assert.isTrue(!enderecoDTO.getRua().isBlank(), "Rua inválida!");
 
-        Assert.notNull(enderecoDTO.getNumero(), "Número da residência não pode nula!");
         Assert.isTrue(enderecoDTO.getNumero() > 0, "Número da residência não pode ser negativa!");
 
         Endereco endereco = enderecoConverter.convertToEndereco(enderecoDTO);
-        this.enderecoRepository.save(endereco);
+        return enderecoConverter.convertToEnderecoDTO(this.enderecoRepository.save(endereco));
     }
 
     @Transactional(rollbackFor = Exception.class)

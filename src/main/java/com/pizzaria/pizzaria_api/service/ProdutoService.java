@@ -31,7 +31,7 @@ public class ProdutoService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public ProdutoDTO create(ProdutoDTO produtoDTO) {
+    public ProdutoDTO create(final ProdutoDTO produtoDTO) {
         Assert.isTrue(!produtoDTO.getNome().isBlank(), "Deve conter nome do produto!");
         Assert.isTrue(produtoDTO.getValor() >= 0, "Valor deve ser positivo!");
 

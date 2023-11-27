@@ -39,13 +39,13 @@ public class EnderecoController {
     }
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody final EnderecoDTO enderecoDTO){
+    public ResponseEntity<EnderecoDTO> create(@RequestBody final EnderecoDTO enderecoDTO){
         try {
-            this.enderecoService.create(enderecoDTO);
+            EnderecoDTO enderecoCadastrado = this.enderecoService.create(enderecoDTO);
 
-            return ResponseEntity.ok("Cadastrado com sucesso!");
+            return ResponseEntity.ok(enderecoCadastrado);
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
