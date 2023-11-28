@@ -12,6 +12,8 @@ public class FuncionarioDTO {
     private String nome;
     private String login;
     private String senha;
+    private String role;
+    private String token;
     @JsonIgnore
     private List<PedidoDTO> pedidos;
 }
