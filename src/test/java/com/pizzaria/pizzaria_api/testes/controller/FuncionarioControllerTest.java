@@ -25,9 +25,9 @@ class FuncionarioControllerTest {
 
     @BeforeEach
     void injectData(){
-        Funcionario funcionario1 = new Funcionario(1L, "Andre", "andre@email.com", "andre123", null);
-        Funcionario funcionario2 = new Funcionario(2L, "Julia", "julia@email.com", "julia123", null);
-        Funcionario funcionario3 = new Funcionario(3L, "Cleyton", "cleyton@email.com", "cleyton123", null);
+        Funcionario funcionario1 = new Funcionario(1L, "Andre", "andre@email.com", "andre123", "ADMIN", null);
+        Funcionario funcionario2 = new Funcionario(2L, "Julia", "julia@email.com", "julia123", "ADMIN", null);
+        Funcionario funcionario3 = new Funcionario(3L, "Cleyton", "cleyton@email.com", "cleyton123", "ADMIN", null);
         List<Funcionario> funcionarios = List.of(funcionario1, funcionario2, funcionario3);
 
         Mockito.when(funcionarioRepository.findById(1L)).thenReturn(Optional.of(funcionario1));

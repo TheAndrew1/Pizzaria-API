@@ -39,12 +39,12 @@ public class Funcionario  implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return senha;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return login;
     }
 
     @Override
