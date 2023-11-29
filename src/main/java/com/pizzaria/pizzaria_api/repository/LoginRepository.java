@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface LoginRepository extends JpaRepository<Funcionario, Long> {
 
-	public Optional<Funcionario> findByUsername(String login);
+	public Optional<Funcionario> findByLogin(String login);
 	
 }

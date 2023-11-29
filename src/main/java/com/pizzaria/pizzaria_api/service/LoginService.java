@@ -28,7 +28,7 @@ public class LoginService {
 						loginDTO.getSenha()
 						)
 				);
-		Funcionario user = repository.findByUsername(loginDTO.getLogin()).orElseThrow();
+		Funcionario user = repository.findByLogin(loginDTO.getLogin()).orElseThrow();
 		var jwtToken = jwtService.generateToken(user);
 		
 		return toFuncionaDTO(user, jwtToken);

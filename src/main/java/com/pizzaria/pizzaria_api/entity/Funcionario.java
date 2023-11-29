@@ -23,7 +23,7 @@ public class Funcionario  implements UserDetails {
     private String nome;
     @Column(name = "login", nullable = false, length = 25)
     private String login;
-    @Column(name = "senha", nullable = false, length = 20)
+    @Column(name = "senha", nullable = false)
     private String senha;
     @Column(name = "role", nullable = false, length = 20)
     private String role;
