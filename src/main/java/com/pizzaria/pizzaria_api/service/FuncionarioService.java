@@ -5,6 +5,7 @@ import com.pizzaria.pizzaria_api.dto.FuncionarioDTO;
 import com.pizzaria.pizzaria_api.entity.Funcionario;
 import com.pizzaria.pizzaria_api.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -17,6 +18,8 @@ public class FuncionarioService {
     private FuncionarioRepository funcionarioRepository;
     @Autowired
     private FuncionarioConverter funcionarioConverter;
+    @Autowired
+    private PasswordEncoder psEncode;
 
     public FuncionarioDTO findById(final Long id) {
         return funcionarioConverter.convertToFuncionarioDTO(this.funcionarioRepository.findById(id).orElseThrow());
@@ -34,6 +37,9 @@ public class FuncionarioService {
         Assert.isTrue(!funcionarioDTO.getLogin().isBlank(), "Login inválido!");
         Assert.isTrue(!funcionarioDTO.getSenha().isBlank(), "Senha inválido!");
 
+        funcionarioDTO.setSenha(psEncode.encode(funcionarioDTO.getSenha()));
+        funcionarioDTO.setRole("ADMIN");
+
         Funcionario funcionario = funcionarioConverter.convertToFuncionario(funcionarioDTO);
         this.funcionarioRepository.save(funcionario);
     }
@@ -47,6 +53,8 @@ public class FuncionarioService {
         Assert.isTrue(!funcionarioDTO.getNome().isBlank(), "Nome inválido!");
         Assert.isTrue(!funcionarioDTO.getLogin().isBlank(), "Login inválido!");
         Assert.isTrue(!funcionarioDTO.getSenha().isBlank(), "Senha inválido!");
+
+        funcionarioDTO.setSenha(psEncode.encode(funcionarioDTO.getSenha()));
 
         Funcionario funcionario = funcionarioConverter.convertToFuncionario(funcionarioDTO);
         this.funcionarioRepository.save(funcionario);
