@@ -14,7 +14,7 @@
 	<name>Pizzaria-API</name>
 	<description>API pizzaria para projeto mensal</description>
 	<properties>
-		<java.version>20</java.version>
+		<java.version>19</java.version>
 
 		<jacoco.version>0.8.9</jacoco.version>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -130,7 +130,7 @@
 							<outputDirectory>${basedir}/target/classes/static/</outputDirectory>
 							<resources>
 								<resource>
-									<directory>${basedir}/../../front-jwt-aula06/demo/dist/demo</directory>
+									<directory>${basedir}/../Pizzaria-Front/dist/pizzaria</directory>
 								</resource>
 							</resources>
 						</configuration>
@@ -139,5 +139,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

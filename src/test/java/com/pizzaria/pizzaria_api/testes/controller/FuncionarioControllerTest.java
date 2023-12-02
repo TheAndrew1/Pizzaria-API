@@ -66,7 +66,7 @@ class FuncionarioControllerTest {
 
     @Test
     void TestControllerCreate01(){  //Certo
-        FuncionarioDTO funcionarioCriado = new FuncionarioDTO(1L, "Andre", "andre@email.com", "andre123", null);
+        FuncionarioDTO funcionarioCriado = new FuncionarioDTO(1L, "Andre", "andre@email.com", "andre123", "ADMIN");
         String mensagem = "Cadastrado com sucesso!";
 
         var resposta = funcionarioController.create(funcionarioCriado);
@@ -77,7 +77,7 @@ class FuncionarioControllerTest {
 
     @Test
     void TestControllerCreate02(){  //Falha
-        FuncionarioDTO funcionarioCriado = new FuncionarioDTO(1L, "Andre", "andre@email.com", "", null);
+        FuncionarioDTO funcionarioCriado = new FuncionarioDTO(1L, "Andre", "andre@email.com", "", "ADMIN");
         String mensagem = "Senha inválido!";
 
         var resposta = funcionarioController.create(funcionarioCriado);
@@ -88,7 +88,7 @@ class FuncionarioControllerTest {
 
     @Test
     void TestControllerUpdate01(){  //Certo
-        FuncionarioDTO funcionarioEditado = new FuncionarioDTO(1L, "Andre", "andre@gmail.com", "andre123", null);
+        FuncionarioDTO funcionarioEditado = new FuncionarioDTO(1L, "Andre", "andre@gmail.com", "andre123", "ADMIN");
         String mensagem = "Editado com sucesso!";
 
         var resposta = funcionarioController.update(1L, funcionarioEditado);
@@ -99,7 +99,7 @@ class FuncionarioControllerTest {
 
     @Test
     void TestControllerUpdate02(){  //Falha
-        FuncionarioDTO funcionarioEditado = new FuncionarioDTO(1L, "", "andre@email.com", "andre123", null);
+        FuncionarioDTO funcionarioEditado = new FuncionarioDTO(1L, "", "andre@email.com", "andre123", "ADMIN");
         String mensagem = "Nome inválido!";
 
         var resposta = funcionarioController.update(1L, funcionarioEditado);

@@ -30,6 +30,14 @@ public class Funcionario  implements UserDetails {
     @OneToMany(mappedBy = "funcionario")
     private List<Pedido> pedidos;
 
+    public Funcionario(Long id, String nome, String login, String senha, String role){
+        this.id = id;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.role = role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();

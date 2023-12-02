@@ -16,4 +16,12 @@ public class FuncionarioDTO {
     private String token;
     @JsonIgnore
     private List<PedidoDTO> pedidos;
+
+    public FuncionarioDTO(Long id, String nome, String login, String senha, String role){
+        this.id = id;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.role = role;
+    }
 }
